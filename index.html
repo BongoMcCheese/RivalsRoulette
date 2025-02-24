@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Word Display</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: black; /* Set background color to black */
+            color: yellow; /* Set text color to yellow */
+        }
+
+        #result {
+            font-size: 20px;
+            font-weight: bold;
+            color: yellow; /* Ensure result text is yellow */
+            margin-top: 20px;
+        }
+
+        #top-image {
+            width: 20%;
+            height:auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        #image-caption {
+            font-size: 50px;
+        }
+
+        /* Additional styles for button */
+        .button-19 {
+            appearance: button;
+            background-color: #000000;
+            border: solid transparent;
+            border-radius: 16px;
+            border-width: 0 0 4px;
+            box-sizing: border-box;
+            color: #000000;
+            cursor: pointer;
+            display: inline-block;
+            font-family: din-round,sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: .8px;
+            line-height: 20px;
+            margin: 0;
+            outline: none;
+            overflow: visible;
+            padding: 13px 16px;
+            text-align: center;
+            text-transform: uppercase;
+            touch-action: manipulation;
+            transform: translateZ(0);
+            transition: filter .2s;
+            user-select: none;
+            -webkit-user-select: none;
+            vertical-align: middle;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .button-19:after {
+            background-clip: padding-box;
+            background-color: #ffd900;
+            border: solid transparent;
+            border-radius: 16px;
+            border-width: 0 0 4px;
+            bottom: -4px;
+            content: "";
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+        }
+
+        .button-19:hover:not(:disabled) {
+            filter: brightness(1.1);
+        }
+
+        .button-19:disabled {
+            cursor: auto;
+        }
+
+        .button-19:active {
+            border-width: 4px 0 0;
+            background: none;
+        }
+    </style>
+</head>
+<body>
+    <img id="top-image" src="logo.png" alt="Centered Image">
+
+    <p id="image-caption">Rivals Roulette</p>
+
+    <div id="word-buttons">
+        <!-- Add unique IDs for each button so the JavaScript can target them -->
+        <button id="button-1" class="button-19">Dualist</button>
+        <button id="button-2" class="button-19">Vanguard</button>
+        <button id="button-3" class="button-19">Strategist</button>
+    </div>
+
+    <div id="result" style="font-size: 20px; font-weight: bold; color: yellow; margin-top: 20px;"></div>
+
+    <script>
+        // List of words for each button
+        const list1 = ["Black Panther", "Black Widow", "Hawkeye", "Hela", "Human Torch", "Iron Fist", "Iron Man", "Magik", "Mister Fantastic", "Moon Knight", "Namor", "Psylocke", "Scarlet Witch", "Spider-Man", "Squirrel Girl", "Star-Lord", "Storm", "The Punisher", "Winter Soldier", "Wolverine"];
+        const list2 = ["Captain America", "Doctor Strange", "Groot", "Hulk", "Magneto", "Peni Parker", "The Thing", "Thor", "Venom"];
+        const list3 = ["Adam Warlock", "Invisible Woman", "Jeff the Land Shark", "Loki", "Luna Snow", "Mantis", "Rocket Raccoon"];
+
+        // Function to get a random word from a list
+        function getRandomWord(list) {
+            const randomIndex = Math.floor(Math.random() * list.length);
+            return list[randomIndex];
+        }
+
+        // Event listeners for buttons
+        document.getElementById('button-1').onclick = function() {
+            const randomWord = getRandomWord(list1);
+            document.getElementById('result').textContent = "Dualist: " + randomWord;
+        };
+
+        document.getElementById('button-2').onclick = function() {
+            const randomWord = getRandomWord(list2);
+            document.getElementById('result').textContent = "Vanguard: " + randomWord;
+        };
+
+        document.getElementById('button-3').onclick = function() {
+            const randomWord = getRandomWord(list3);
+            document.getElementById('result').textContent = "Strategist: " + randomWord;
+        };
+    </script>
+</body>
+</html>
