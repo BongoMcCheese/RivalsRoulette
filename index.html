@@ -8,20 +8,20 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: black; /* Set background color to black */
-            color: yellow; /* Set text color to yellow */
+            background-color: black;
+            color: yellow;
             display: flex;
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center content horizontally */
-            justify-content: center; /* Center content vertically */
-            height: 100vh; /* Make the body take up the full viewport height */
-            margin: 0; /* Remove any default margin */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
         }
 
         #result {
             font-size: 20px;
             font-weight: bold;
-            color: yellow; /* Ensure result text is yellow */
+            color: yellow;
             margin-top: 20px;
         }
 
@@ -36,7 +36,6 @@
             font-size: 50px;
         }
 
-        /* Additional styles for button */
         .button-19 {
             appearance: button;
             background-color: #000000;
@@ -103,40 +102,39 @@
     <p id="image-caption">Rivals Roulette</p>
 
     <div id="word-buttons">
-        <!-- Add unique IDs for each button so the JavaScript can target them -->
         <button id="button-1" class="button-19">Duelist</button>
         <button id="button-2" class="button-19">Vanguard</button>
         <button id="button-3" class="button-19">Strategist</button>
+        <button id="button-4" class="button-19">ALL RANDOM</button>
     </div>
 
-    <div id="result" style="font-size: 20px; font-weight: bold; color: yellow; margin-top: 20px;"></div>
+    <div id="result"></div>
 
     <script>
-        // List of words for each button
         const list1 = ["Black Panther", "Black Widow", "Hawkeye", "Hela", "Human Torch", "Iron Fist", "Iron Man", "Magik", "Mister Fantastic", "Moon Knight", "Namor", "Psylocke", "Scarlet Witch", "Spider-Man", "Squirrel Girl", "Star-Lord", "Storm", "The Punisher", "Winter Soldier", "Wolverine"];
         const list2 = ["Captain America", "Doctor Strange", "Groot", "Hulk", "Magneto", "Peni Parker", "The Thing", "Thor", "Venom"];
         const list3 = ["Adam Warlock", "Invisible Woman", "Jeff the Land Shark", "Loki", "Luna Snow", "Mantis", "Rocket Raccoon"];
+        
+        const allLists = [...list1, ...list2, ...list3];
 
-        // Function to get a random word from a list
         function getRandomWord(list) {
-            const randomIndex = Math.floor(Math.random() * list.length);
-            return list[randomIndex];
+            return list[Math.floor(Math.random() * list.length)];
         }
 
-        // Event listeners for buttons
         document.getElementById('button-1').onclick = function() {
-            const randomWord = getRandomWord(list1);
-            document.getElementById('result').textContent = "Dualist: " + randomWord;
+            document.getElementById('result').textContent = "Duelist: " + getRandomWord(list1);
         };
 
         document.getElementById('button-2').onclick = function() {
-            const randomWord = getRandomWord(list2);
-            document.getElementById('result').textContent = "Vanguard: " + randomWord;
+            document.getElementById('result').textContent = "Vanguard: " + getRandomWord(list2);
         };
 
         document.getElementById('button-3').onclick = function() {
-            const randomWord = getRandomWord(list3);
-            document.getElementById('result').textContent = "Strategist: " + randomWord;
+            document.getElementById('result').textContent = "Strategist: " + getRandomWord(list3);
+        };
+
+        document.getElementById('button-4').onclick = function() {
+            document.getElementById('result').textContent = "ALL RANDOM: " + getRandomWord(allLists);
         };
     </script>
 </body>
