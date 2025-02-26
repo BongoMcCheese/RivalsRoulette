@@ -1,101 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rivals Roulette</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: black;
-            background-image: url('thumb-1920-1386592.png');
-            color: yellow;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        #result {
-            font-size: 20px;
-            font-weight: bold;
-            color: yellow;
-            margin-top: 20px;
-        }
-
-        #top-image {
-            width: 10%;
-            height: auto;
-            display: block;
-            margin: 20px auto;
-        }
-
-        #image-caption {
-            font-size: 50px;
-        }
-
-        .button-19 {
-            appearance: button;
-            background-color: #000000;
-            border: solid transparent;
-            border-radius: 16px;
-            border-width: 0 0 4px;
-            box-sizing: border-box;
-            color: #000000;
-            cursor: pointer;
-            display: block;
-            font-family: din-round, sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: .8px;
-            line-height: 20px;
-            margin: 10px 0;
-            outline: none;
-            overflow: visible;
-            padding: 13px 16px;
-            text-align: center;
-            text-transform: uppercase;
-            touch-action: manipulation;
-            transform: translateZ(0);
-            transition: filter .2s;
-            user-select: none;
-            -webkit-user-select: none;
-            vertical-align: middle;
-            white-space: nowrap;
-            width: 300px;
-        }
-
-        .button-19:after {
-            background-clip: padding-box;
-            background-color: #ffd900;
-            border: solid transparent;
-            border-radius: 16px;
-            border-width: 0 0 4px;
-            bottom: -4px;
-            content: "";
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            z-index: -1;
-        }
-
-        .button-19:hover:not(:disabled) {
-            filter: brightness(1.1);
-        }
-
-        .button-19:disabled {
-            cursor: auto;
-        }
-
-        .button-19:active {
-            border-width: 4px 0 0;
-            background: none;
-        }
-    </style>
 </head>
 <body>
     <img id="top-image" src="256x256.png" alt="Centered Image">
@@ -103,8 +10,8 @@
     <p id="image-caption">Rivals Roulette</p>
 
     <div id="word-buttons">
-        <button id="button-1" class="button-19">Duelist</button>
         <button id="button-2" class="button-19">Vanguard</button>
+        <button id="button-1" class="button-19">Duelist</button>
         <button id="button-3" class="button-19">Strategist</button>
         <button id="button-4" class="button-19">ALL RANDOM</button>
     </div>
@@ -116,7 +23,11 @@
         const list2 = ["Captain America", "Doctor Strange", "Groot", "Hulk", "Magneto", "Peni Parker", "The Thing", "Thor", "Venom"];
         const list3 = ["Adam Warlock", "Invisible Woman", "Jeff the Land Shark", "Loki", "Luna Snow", "Mantis", "Rocket Raccoon"];
         
-        const allLists = [...list1, ...list2, ...list3];
+        const lists = [
+            { name: "Duelist", characters: list1 },
+            { name: "Vanguard", characters: list2 },
+            { name: "Strategist", characters: list3 }
+        ];
 
         function getRandomWord(list) {
             return list[Math.floor(Math.random() * list.length)];
@@ -135,7 +46,12 @@
         };
 
         document.getElementById('button-4').onclick = function() {
-            document.getElementById('result').textContent = "ALL RANDOM: " + getRandomWord(allLists);
+            // Pick a random list
+            const randomList = lists[Math.floor(Math.random() * lists.length)];
+            // Pick a random character from that list
+            const randomCharacter = getRandomWord(randomList.characters);
+            // Display the category name with the selected character
+            document.getElementById('result').textContent = randomList.name + ": " + randomCharacter;
         };
     </script>
 </body>
